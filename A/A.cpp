@@ -13,45 +13,27 @@ using namespace std;
 
 int main()
 {
-	map<string, pair<int, int>> a;
-	int n = 6;
-	for (int i = 0; i < n; i++)
+	string s = "Sandro";
+	string a;
+	cin >> a;
+	int mn = 1e9;
+	for (int i = 0; i <= a.size() - s.size(); i++)
 	{
-		string name;
-		cin >> name;
-		string device;
-		cin >> device;
-		int price;
-		cin >> price;
-		if (a.find(device) == a.end())
+		int price = 0;
+		for (int j = 0; j < s.size(); j++)
 		{
-			a[device] = { 1, price };
+			if (tolower(a[i + j]) != tolower(s[j]))
+			{
+				price += 5;
+			}
+			if (islower(a[i + j]) != islower(s[j]))
+			{
+				price += 5;
+			}
 		}
-		else
-		{
-			a[device].first++;
-			a[device].second = MIN(a[device].second, price);
-		}
+		mn = MIN(mn, price);
 	}
-	string best = "";
-	int mx = 0;
-	int mnPrice = 1e9;
-	for (auto item : a)
-	{
-		if (item.second.first > mx)
-		{
-			best = item.first;
-			mx = item.second.first;
-			mnPrice = item.second.second;
-		}
-		else if (item.second.first == mx && item.second.second < mnPrice)
-		{
-			best = item.first;
-			mx = item.second.first;
-			mnPrice = item.second.second;
-		}
-	}
-	cout << best << endl;
+	cout << mn << endl;
 	return 0;
 }
 
