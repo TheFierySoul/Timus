@@ -1,5 +1,2 @@
 ﻿  A.cpp
-D:\Projects\Timus\A\A.cpp(19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\Projects\Timus\A\A.cpp(20): warning C4018: <=: несоответствие типов со знаком и без знака
-D:\Projects\Timus\A\A.cpp(23): warning C4018: <: несоответствие типов со знаком и без знака
   A.vcxproj -> D:\Projects\Timus\Debug\A.exe

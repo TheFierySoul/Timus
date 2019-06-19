@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <map>
 #include <cmath>
@@ -13,27 +14,18 @@ using namespace std;
 
 int main()
 {
-	string s = "Sandro";
-	string a;
-	cin >> a;
-	int mn = 1e9;
-	for (int i = 0; i <= a.size() - s.size(); i++)
+	int n, t, s;
+	cin >> n >> t >> s;
+	double r = s + t + 0.0;
+	for (int i = 0; i < n; i++)
 	{
-		int price = 0;
-		for (int j = 0; j < s.size(); j++)
-		{
-			if (tolower(a[i + j]) != tolower(s[j]))
-			{
-				price += 5;
-			}
-			if (islower(a[i + j]) != islower(s[j]))
-			{
-				price += 5;
-			}
-		}
-		mn = MIN(mn, price);
+		int temp;
+		cin >> temp;
+		double a = r - temp;
+		if (a < 0)
+			continue;
+		cout << fixed << setprecision(7) << (t - a / 2.0) + s << endl;
 	}
-	cout << mn << endl;
 	return 0;
 }
 
