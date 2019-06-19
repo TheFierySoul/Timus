@@ -3,35 +3,55 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <cmath>
+#include <string>
+
+#define MIN(a,b) (((a) < (b))?(a):(b))
 
 using namespace std;
 
 int main()
 {
-	int n, m;
-	cin >> n >> m;
-	vector<int> a(n);
+	map<string, pair<int, int>> a;
+	int n = 6;
 	for (int i = 0; i < n; i++)
 	{
-		a[i] = i + 1;
+		string name;
+		cin >> name;
+		string device;
+		cin >> device;
+		int price;
+		cin >> price;
+		if (a.find(device) == a.end())
+		{
+			a[device] = { 1, price };
+		}
+		else
+		{
+			a[device].first++;
+			a[device].second = MIN(a[device].second, price);
+		}
 	}
-	vector<int> b(m);
-	b[0] = n + 1;
-	for (int i = 1; i < m; i++)
+	string best = "";
+	int mx = 0;
+	int mnPrice = 1e9;
+	for (auto item : a)
 	{
-		b[i] = b[i - 1] + a.back() + 1;
+		if (item.second.first > mx)
+		{
+			best = item.first;
+			mx = item.second.first;
+			mnPrice = item.second.second;
+		}
+		else if (item.second.first == mx && item.second.second < mnPrice)
+		{
+			best = item.first;
+			mx = item.second.first;
+			mnPrice = item.second.second;
+		}
 	}
-	for (int i = 0; i < n; i++)
-	{
-		cout << a[i] << ' ';
-	}
-	cout << endl;
-	for (int i = 0; i < m; i++)
-	{
-		cout << b[i] << ' ';
-	}
-	cout << endl;
+	cout << best << endl;
 	return 0;
 }
 
