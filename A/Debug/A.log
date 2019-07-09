@@ -1,4 +1,4 @@
 ﻿  A.cpp
-D:\Projects\Timus\A\A.cpp(65): warning C4244: аргумент: преобразование "int64" в "long", возможна потеря данных
-D:\Projects\Timus\A\A.cpp(65): warning C4244: =: преобразование "double" в "int64", возможна потеря данных
+D:\Projects\Timus\A\A.cpp(67): warning C4244: аргумент: преобразование "int64" в "long", возможна потеря данных
+D:\Projects\Timus\A\A.cpp(67): warning C4244: =: преобразование "double" в "int64", возможна потеря данных
   A.vcxproj -> D:\Projects\Timus\Debug\A.exe

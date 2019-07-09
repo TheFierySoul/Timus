@@ -15,6 +15,8 @@ using namespace std;
 
 typedef long long int64;
 
+const double PI = 3.1415926535;
+const int G = 10;
 
 struct ST
 {
@@ -69,6 +71,11 @@ void P(int64& x, int64& y)
 	}
 }
 
+int IsCell(int x, int y, int n)
+{
+	return ((x >= 1) && (x <= n) && (y >= 1) && (y <= n)) ? 1 : 0;
+}
+
 int main()
 {
 	/*
@@ -81,29 +88,33 @@ int main()
 	cout << a << ' ' << b << endl;
 	return 0;
 	*/
-	int b, r, y;
-	cin >> b >> r >> y;
-	int k;
-	cin >> k;
-	int res = 1;
-	for (int i = 0; i < k; i++)
-	{
-		string a;
-		cin >> a;
-		if (a == "Red")
-		{
-			res *= r;
-			continue;
-		}
-		if (a == "Blue")
-		{
-			res *= b;
-			continue;
-		}
-		if (a == "Yellow")
-		{
-			res *= y;
-		}
-	}
-	cout << res << endl;
+	int n, x, y;
+	cin >> n >> x >> y;
+	int left = x - 1;
+	int right = n - x;
+	int up = y - 1;
+	int down = n - y;
+	int ur = MIN(up, right);
+	int ul = MIN(up, left);
+	int dr = MIN(down, right);
+	int dl = MIN(down, left);
+	int king = MIN(up, 1) + MIN(right, 1) + MIN(left, 1) + MIN(down, 1) + MIN(ur, 1) + MIN(ul, 1) + MIN(dl, 1) + MIN(dr, 1);
+	int bishop = ur + ul + dr + dl;
+	int rook = down + up + right + left;
+	int queen = bishop + rook;
+	int knight = 0;
+	knight += IsCell(x + 2, y + 1, n);
+	knight += IsCell(x + 2, y - 1, n);
+	knight += IsCell(x - 2, y - 1, n);
+	knight += IsCell(x - 2, y + 1, n);
+	knight += IsCell(x + 1, y + 2, n);
+	knight += IsCell(x + 1, y - 2, n);
+	knight += IsCell(x - 1, y + 2, n);
+	knight += IsCell(x - 1, y - 2, n);
+	cout << "King: " << king << endl;
+	cout << "Knight: " << knight << endl;
+	cout << "Bishop: " << bishop << endl;
+	cout << "Rook: " << rook << endl;
+	cout << "Queen: " << queen << endl;
+	return 0;
 }
